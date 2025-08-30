@@ -20,3 +20,9 @@
   flex-direction: row;
   gap: 10;
 }
+
+.e10horiz{
+  display: flex;
+  flex-direction: row;
+
+}
