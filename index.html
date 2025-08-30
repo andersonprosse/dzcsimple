@@ -1,53 +1,29 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Quadrados Google Sheets</title>
-  <style>
-    .quadrado {
-      width: 25px;
-      height: 25px;
-      margin: 5px;
-      display: inline-block;
-      background-color: gray; /* cor inicial neutra */
+<script>
+  async function atualizarQuadrados() {
+    const url = "https://opensheet.elk.sh/1aqJzzB8fYB1RZGJjx-lLhWVKt0Y5d2Iwok_fvpRDvDg/plan1";
+    try {
+      const resposta = await fetch(url);
+      const dados = await resposta.json();
+
+      console.log("Dados recebidos da planilha:", dados);
+
+      const q1 = Number(dados[0]["quadrado 1"]);
+      const q2 = Number(dados[0]["quadrado 2"]);
+      const q3 = Number(dados[0]["quadrado 3"]);
+      const q4 = Number(dados[0]["quadrado 4"]);
+
+      console.log("Valores:", q1, q2, q3, q4);
+
+      document.getElementById("q1").style.backgroundColor = q1 === 0 ? "green" : "red";
+      document.getElementById("q2").style.backgroundColor = q2 === 0 ? "green" : "red";
+      document.getElementById("q3").style.backgroundColor = q3 === 0 ? "green" : "red";
+      document.getElementById("q4").style.backgroundColor = q4 === 0 ? "green" : "red";
+
+    } catch (erro) {
+      console.error("Erro ao buscar dados:", erro);
     }
-  </style>
-</head>
-<body>
-  <div id="q1" class="quadrado"></div>
-  <div id="q2" class="quadrado"></div>
-  <div id="q3" class="quadrado"></div>
-  <div id="q4" class="quadrado"></div>
+  }
 
-  <script>
-    async function atualizarQuadrados() {
-      const url = "https://opensheet.elk.sh/1aqJzzB8fYB1RZGJjx-lLhWVKt0Y5d2Iwok_fvpRDvDg/plan1";
-      try {
-        const resposta = await fetch(url);
-        const dados = await resposta.json();
-
-        // Pega os valores como números (garante que funciona)
-        const q1 = Number(dados[0]["quadrado 1"]);
-        const q2 = Number(dados[0]["quadrado 2"]);
-        const q3 = Number(dados[0]["quadrado 3"]);
-        const q4 = Number(dados[0]["quadrado 4"]);
-
-        // Se for 0 -> verde | Se for 1 -> vermelho
-        document.getElementById("q1").style.backgroundColor = q1 === 0 ? "green" : "red";
-        document.getElementById("q2").style.backgroundColor = q2 === 0 ? "green" : "red";
-        document.getElementById("q3").style.backgroundColor = q3 === 0 ? "green" : "red";
-        document.getElementById("q4").style.backgroundColor = q4 === 0 ? "green" : "red";
-
-      } catch (erro) {
-        console.error("Erro ao buscar dados:", erro);
-      }
-    }
-
-    // Atualiza ao carregar
-    atualizarQuadrados();
-
-    // Atualiza a cada 5 segundos
-    setInterval(atualizarQuadrados, 5000);
-  </script>
-</body>
-</html>
+  atualizarQuadrados();
+  setInterval(atualizarQuadrados, 5000);
+</script>
