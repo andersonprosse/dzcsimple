@@ -1,3 +1,8 @@
+
+body{
+  background-color: rgb(34,34,34);
+}
+
 .quadrado {
   width: 15px;
   height: 20px;
