@@ -22,24 +22,30 @@
   <script>
     async function atualizarQuadrados() {
       const url = "https://opensheet.elk.sh/1aqJzzB8fYB1RZGJjx-lLhWVKt0Y5d2Iwok_fvpRDvDg/plan1";
-      const resposta = await fetch(url);
-      const dados = await resposta.json();
+      try {
+        const resposta = await fetch(url);
+        const dados = await resposta.json();
 
-      // Exemplo: sua planilha tem colunas "quadrado1", "quadrado2"...
-      const q1 = dados[0].quadrado1;
-      const q2 = dados[0].quadrado2;
-      const q3 = dados[0].quadrado3;
-      const q4 = dados[0].quadrado4;
+        // Atenção: nomes das colunas exatamente como estão na planilha
+        const q1 = dados[0]["quadrado 1"];
+        const q2 = dados[0]["quadrado 2"];
+        const q3 = dados[0]["quadrado 3"];
+        const q4 = dados[0]["quadrado 4"];
 
-      document.getElementById("q1").style.backgroundColor = q1 === "0" ? "green" : "red";
-      document.getElementById("q2").style.backgroundColor = q2 === "0" ? "green" : "red";
-      document.getElementById("q3").style.backgroundColor = q3 === "0" ? "green" : "red";
-      document.getElementById("q4").style.backgroundColor = q4 === "0" ? "green" : "red";
+        document.getElementById("q1").style.backgroundColor = q1 === "0" ? "green" : "red";
+        document.getElementById("q2").style.backgroundColor = q2 === "0" ? "green" : "red";
+        document.getElementById("q3").style.backgroundColor = q3 === "0" ? "green" : "red";
+        document.getElementById("q4").style.backgroundColor = q4 === "0" ? "green" : "red";
+      } catch (erro) {
+        console.error("Erro ao buscar dados:", erro);
+      }
     }
 
-    // Atualiza a cada 5 segundos
-    setInterval(atualizarQuadrados, 5000);
+    // chama a função quando a página carrega
     atualizarQuadrados();
+
+    // atualiza a cada 5 segundos
+    setInterval(atualizarQuadrados, 5000);
   </script>
 </body>
 </html>
