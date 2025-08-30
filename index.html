@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Quadrados Google Sheets</title>
+  <style>
+    .quadrado {
+      width: 25px;
+      height: 25px;
+      margin: 5px;
+      display: inline-block;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="q1" class="quadrado"></div>
+  <div id="q2" class="quadrado"></div>
+  <div id="q3" class="quadrado"></div>
+  <div id="q4" class="quadrado"></div>
+
+  <script>
+    async function atualizarQuadrados() {
+      const url = "https://opensheet.elk.sh/SEU_ID_DA_PLANILHA/NOME_DA_ABA";
+      const resposta = await fetch(url);
+      const dados = await resposta.json();
+
+      // Exemplo: sua planilha tem colunas "quadrado1", "quadrado2"...
+      const q1 = dados[0].quadrado1;
+      const q2 = dados[0].quadrado2;
+      const q3 = dados[0].quadrado3;
+      const q4 = dados[0].quadrado4;
+
+      document.getElementById("q1").style.backgroundColor = q1 === "0" ? "green" : "red";
+      document.getElementById("q2").style.backgroundColor = q2 === "0" ? "green" : "red";
+      document.getElementById("q3").style.backgroundColor = q3 === "0" ? "green" : "red";
+      document.getElementById("q4").style.backgroundColor = q4 === "0" ? "green" : "red";
+    }
+
+    // Atualiza a cada 5 segundos
+    setInterval(atualizarQuadrados, 5000);
+    atualizarQuadrados();
+  </script>
+</body>
+</html>
