@@ -18,7 +18,7 @@
 .clone{
   display: flex;
   flex-direction: row;
-  gap: 15;
+  gap: 10px;
 }
 
 .e10horiz{
@@ -29,6 +29,6 @@
 }
 
 .e10esp{
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
