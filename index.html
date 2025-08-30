@@ -9,7 +9,7 @@
       height: 25px;
       margin: 5px;
       display: inline-block;
-      background-color: red;
+      background-color: gray; /* cor inicial neutra */
     }
   </style>
 </head>
@@ -26,25 +26,27 @@
         const resposta = await fetch(url);
         const dados = await resposta.json();
 
-        // Atenção: nomes das colunas exatamente como estão na planilha
-        const q1 = dados[0]["quadrado 1"];
-        const q2 = dados[0]["quadrado 2"];
-        const q3 = dados[0]["quadrado 3"];
-        const q4 = dados[0]["quadrado 4"];
+        // Pega os valores como números (garante que funciona)
+        const q1 = Number(dados[0]["quadrado 1"]);
+        const q2 = Number(dados[0]["quadrado 2"]);
+        const q3 = Number(dados[0]["quadrado 3"]);
+        const q4 = Number(dados[0]["quadrado 4"]);
 
-        document.getElementById("q1").style.backgroundColor = q1 === "0" ? "green" : "red";
-        document.getElementById("q2").style.backgroundColor = q2 === "0" ? "green" : "red";
-        document.getElementById("q3").style.backgroundColor = q3 === "0" ? "green" : "red";
-        document.getElementById("q4").style.backgroundColor = q4 === "0" ? "green" : "red";
+        // Se for 0 -> verde | Se for 1 -> vermelho
+        document.getElementById("q1").style.backgroundColor = q1 === 0 ? "green" : "red";
+        document.getElementById("q2").style.backgroundColor = q2 === 0 ? "green" : "red";
+        document.getElementById("q3").style.backgroundColor = q3 === 0 ? "green" : "red";
+        document.getElementById("q4").style.backgroundColor = q4 === 0 ? "green" : "red";
+
       } catch (erro) {
         console.error("Erro ao buscar dados:", erro);
       }
     }
 
-    // chama a função quando a página carrega
+    // Atualiza ao carregar
     atualizarQuadrados();
 
-    // atualiza a cada 5 segundos
+    // Atualiza a cada 5 segundos
     setInterval(atualizarQuadrados, 5000);
   </script>
 </body>
