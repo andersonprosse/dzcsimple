@@ -24,5 +24,6 @@
 .e10horiz{
   display: flex;
   flex-direction: row;
+  margin: 20px;
 
 }
