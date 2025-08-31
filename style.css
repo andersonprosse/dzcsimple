@@ -3,6 +3,11 @@ body{
   background-color: rgb(56, 55, 57);
 }
 
+h2{
+  margin: 0;
+}
+
+
 .quadrado {
   width: 15px;
   height: 20px;
@@ -16,7 +21,7 @@ body{
 
   display: flex;
   flex-direction: row;
-  gap: 30px;
+  gap: 40px;
 
 }
 
