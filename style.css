@@ -54,8 +54,9 @@ h2{
   margin: 0;
   color: white;
   size: 1rem;
+  justify-content: center;
 }
 
 .h2rua2{
-  margin-left: 40px;
+  justify-content: center;
 }
