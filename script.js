@@ -14,10 +14,13 @@ async function atualizarQuadrados() {
 
     console.log("Valores:", q1, q2, q3, q4);
 
-    document.getElementById("q1").style.backgroundColor = q1 === 0 ? "rgb(18, 171, 18);" : "red";
-    document.getElementById("q2").style.backgroundColor = q2 === 0 ? "rgb(18, 171, 18);" : "red";
-    document.getElementById("q3").style.backgroundColor = q3 === 0 ? "rgb(18, 171, 18);" : "red";
-    document.getElementById("q4").style.backgroundColor = q4 === 0 ? "rgb(18, 171, 18);" : "red";
+ for (let i = 1; i <= 505; i++) {
+  const valor = Number(dados[i - 1]["valor"]); // dados[0] → q1, dados[1] → q2, etc.
+  const quadrado = document.getElementById(`q${i}`);
+  if (quadrado) {
+    quadrado.style.backgroundColor = valor === 0 ? "rgb(18, 171, 18)" : "red";
+  }
+}
 
   } catch (erro) {
     console.error("Erro ao buscar dados:", erro);
