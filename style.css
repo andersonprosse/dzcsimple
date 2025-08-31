@@ -38,3 +38,10 @@ body{
   margin-left: 10px;
   margin-right: 10px;
 }
+
+.nomesrua{
+  writing-mode: vertical-lr;
+  margin: 0;
+  color: white;
+  size: 1rem;
+}
